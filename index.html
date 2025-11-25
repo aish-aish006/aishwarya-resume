@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aishwarya Sujan - Resume</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f2347 0%, #1e3c72 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        } */
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2a5298;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #1e3c72;
+        }
+
+        nav a.active {
+            background: #0f2347;
+        }
+
+        .page {
+            display: none;
+            padding: 40px;
+            min-height: 500px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+/* 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        } */
+
+        h2 {
+            color: #1e3c72;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #2a5298;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: white;
+            border: 2px solid #2a5298;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: #2a5298;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .project-title {
+            color: #1e3c72;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            color: #2a5298;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .achievement-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f8f9fa 0%, white 100%);
+            border-left: 4px solid #2a5298;
+        }
+
+        .achievement-item::before {
+            content: "★ ";
+            color: #2a5298;
+            font-size: 1.2em;
+        }
+
+        footer {
+            background: #0f2347;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #2a5298;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #2a5298;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px #2a5298;
+        }
+
+        /* .btn-download {
+            display: inline-block;
+            background: #2a5298;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: #1e3c72;
+        } */
+
+        .highlight {
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .contact-info { flex-direction: column; gap: 10px; }
+            nav ul { flex-direction: column; }
+            .page { padding: 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>AISHWARYA SUJAN</h1>
+                <p class="tagline">Aspiring Full Stack Developer | Python Enthusiast | AI/ML Explorer</p>
+                <div class="contact-info">
+                    <span class="contact-item">aishwarya.sujan6@gmail.com</span>
+                    <span class="contact-item">+91 8296162379</span>
+                    <span class="contact-item">Bengaluru, Karnataka</span>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about" class="nav-link active">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="#activities" class="nav-link">Activities</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div id="about" class="page active">
+            <h2>Career Objective</h2>
+            <div class="section-box">
+                <p>Aspiring <span class="highlight">Python and full stack developer</span> with expertise in Python, Java, C, and JavaScript. Skilled in working with SQL/NoSQL databases, and designing pages. Proficient in developing <span class="highlight">secure, scalable, and high-quality solutions</span> with hands-on experience in data visualization, and real-world problem-solving.</p>
+            </div>
+
+            <h2>About Me</h2>
+            <div class="section-box">
+                <p>I am a passionate Computer Science student at CMR Institute of Technology with a strong foundation in software development and emerging technologies. My journey in technology has been marked by consistent academic excellence and active participation in hackathons and technical events.</p>
+                <p style="margin-top: 15px;">Beyond coding, I am deeply involved in theatre and cultural activities, where I serve as a scriptwriter and director. This creative pursuit has enhanced my leadership, communication, and collaborative skills.</p>
+            </div>
+
+            <h2>Personal Details</h2>
+            <div class="section-box">
+                <p><strong>Date of Birth:</strong> 13th July 2005</p>
+                <p><strong>Gender:</strong> Female</p>
+                <p><strong>Nationality:</strong> Indian</p>
+                <p><strong>Languages:</strong> English, Hindi, Kannada, Urdu</p>
+                <p><strong>Hobbies:</strong> Writing plays and poems, acting, film directing</p>
+            </div>
+        </div>
+
+        <div id="education" class="page">
+            <h2>Education Qualification</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="section-box">
+                        <h3>Bachelor of Engineering – Computer Science and Engineering</h3>
+                        <p><strong>CMR Institute of Technology, Bengaluru</strong></p>
+                        <p><span class="highlight">CGPA: 9.5</span> | Expected Graduation: 2027</p>
+                        <p style="margin-top: 10px;">Currently pursuing fifth semester with focus on Web Technologies, Software Engineering, and Advanced Programming.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="section-box">
+                        <h3>Pre University Board - Science</h3>
+                        <p><strong>Mount Carmel PU College, Bengaluru</strong></p>
+                        <p><span class="highlight">94.3%</span> | Year: 2023</p>
+                        <p style="margin-top: 10px;">Completed with distinction in Physics, Chemistry, Mathematics, and Computer Science.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="section-box">
+                        <h3>10th Grade</h3>
+                        <p><strong>Florence Public High School, Bengaluru</strong></p>
+                        <p><span class="highlight">94.5%</span> | Year: 2021</p>
+                        <p style="margin-top: 10px;">Secured excellent grades across all subjects with special interest in Mathematics and Science.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Academic Honors</h2>
+            <div class="section-box">
+                <div class="achievement-item">Department Topper - 2nd Semester (SGPA: 9.95)</div>
+                <div class="achievement-item">Department Topper - 4th Semester (SGPA: 9.21)</div>
+                <div class="achievement-item">CMR Founder's Day Merit Scholarship Recipient</div>
+            </div>
+        </div>
+
+        <div id="skills" class="page">
+            <h2>Technical Skills</h2>
+            
+            <h3>Programming Languages</h3>
+            <div class="skills-grid">
+                <div class="skill-item">C</div>
+                <div class="skill-item">Java</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+            </div>
+
+            <h3>Databases</h3>
+            <div class="skills-grid">
+                <div class="skill-item">MySQL</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">Excel</div>
+            </div>
+
+            <h3>Frameworks & Technologies</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Express.js</div>
+                <div class="skill-item">Next.js</div>
+                <div class="skill-item">React</div>
+                <div class="skill-item">Flask</div>
+                <div class="skill-item">Socket.io</div>
+            </div>
+
+            <h3>Tools & Platforms</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Git/GitHub</div>
+                <div class="skill-item">VS Code</div>
+                <div class="skill-item">Linux/Ubuntu</div>
+                <div class="skill-item">Windows</div>
+            </div>
+
+            <h3>Technical Concepts</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Software Engineering and Project Management Principles</li>
+                    <li>Agile Methodologies</li>
+                    <li>Artificial Intelligence and Machine Learning</li>
+                    <li>Data Structures and Algorithms</li>
+                    <li>Web Development (Full Stack)</li>
+                    <li>Real-time Communication (WebSocket, WebRTC)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="projects" class="page">
+            <h2>Projects</h2>
+
+            <div class="project-card">
+                <div class="project-title">Bagghut - Full-Stack E-Commerce Web Application</div>
+                <p>Developed a comprehensive e-commerce platform focused on premium bag retail with secure authentication and real-time inventory management.</p>
+                <ul>
+                    <li>Implemented JWT and bcrypt for secure user authentication with role-based access control</li>
+                    <li>Enabled real-time product inventory updates to prevent overselling</li>
+                    <li>Built responsive admin dashboard with sales analytics and inventory monitoring</li>
+                    <li>Designed clean, interactive user interface for seamless browsing and checkout</li>
+                </ul>
+                <p class="tech-stack">Tech Stack: Node.js, Express.js, MongoDB, Mongoose, HTML5, CSS3, JavaScript, JWT, Leaflet.js</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Real-Time Chat Application - WebSocket Messenger</div>
+                <p>Built a full-stack real-time messaging application with advanced features for instant communication.</p>
+                <ul>
+                    <li>Implemented Socket.io WebSocket technology for instant message delivery with 20+ concurrent users</li>
+                    <li>Developed responsive UI with Next.js 15 and TypeScript, achieving 40% faster initial page loads</li>
+                    <li>Integrated video calling functionality with WebRTC-ready infrastructure</li>
+                    <li>Utilized Prisma ORM for efficient database management with PostgreSQL</li>
+                </ul>
+                <p class="tech-stack">Tech Stack: Next.js 15, React, TypeScript, Node.js, Express.js, Socket.io, PostgreSQL, Prisma ORM, Tailwind CSS</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Attendance Management System</div>
+                <p>Automated attendance tracking system using facial recognition technology.</p>
+                <ul>
+                    <li>Replaced manual tracking with facial recognition using OpenCV and NumPy</li>
+                    <li>Implemented Haar-Cascade for face detection and LBPH for recognition</li>
+                    <li>Automated attendance logging into CSV files with email reporting</li>
+                    <li>Created interactive GUI for system scalability</li>
+                </ul>
+                <p class="tech-stack">Tech Stack: Python, OpenCV, NumPy, Haar-Cascade Classifier, LBPH, CSV</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">NGO Management System</div>
+                <p>Centralized web-based management system for NGO operations.</p>
+                <ul>
+                    <li>Streamlined donor/donation management, volunteer coordination, and beneficiary tracking</li>
+                    <li>Implemented role-based access control and automated reporting</li>
+                    <li>Enhanced operational efficiency by digitizing manual processes</li>
+                    <li>Provided analytics for data-driven decision-making</li>
+                </ul>
+                <p class="tech-stack">Tech Stack: Python (Flask), MySQL, HTML, CSS, JavaScript</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Lingua-Trans: Speech-to-Text Translator</div>
+                <p>Intuitive multilingual translator application with speech recognition capabilities.</p>
+                <ul>
+                    <li>Enabled real-time speech-to-text conversion with multilingual translation</li>
+                    <li>Integrated text-to-speech output for seamless multilingual communication</li>
+                    <li>Designed simple, interactive interface for enhanced accessibility</li>
+                </ul>
+                <p class="tech-stack">Tech Stack: Python, Speech Recognition, Google Translate API, gTTS</p>
+            </div>
+        </div>
+
+        <div id="achievements" class="page">
+            <h2>Achievements & Certifications</h2>
+
+            <h3>Hackathons & Competitions</h3>
+            <div class="section-box">
+                <div class="achievement-item">Winner - DSA Hackathon, Department of CSE (2025)</div>
+                <div class="achievement-item">Qualified - Internal Smart India Hackathon, CMRIT (2025)</div>
+                <div class="achievement-item">Participated - Internal Smart India Hackathon, CMRIT (2024)</div>
+            </div>
+
+            <h3>Cultural Achievements</h3>
+            <div class="section-box">
+                <div class="achievement-item">Winner - Mime Competition, Cambridge Institute of Technology</div>
+                <div class="achievement-item">Winner - Mad Ads Competition, CMRIT Cultural Fest</div>
+                <div class="achievement-item">Winner - Mime Competition, CMRIT Cultural Fest</div>
+                <div class="achievement-item">Lead Scriptwriter and Director, Theatre Club CMRIT</div>
+            </div>
+
+            <h3>Online Courses & Certifications</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Data Analysis with Python - freeCodeCamp</li>
+                    <li>Java Programming - Udemy</li>
+                    <li>Full Stack Web Development Bootcamp - Udemy</li>
+                    <li>Data Structures in Python - Infosys Springboard</li>
+                </ul>
+            </div>
+
+            <h3>Scholarships</h3>
+            <div class="section-box">
+                <div class="achievement-item">CMR Founder's Day Merit Scholarship</div>
+            </div>
+
+            <h3>Conferences</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Society of Women Engineers Conference (2025)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="activities" class="page">
+            <h2>Co-Curricular & Extra-Curricular Activities</h2>
+
+            <h3>Leadership Roles</h3>
+            <div class="section-box">
+                <p><strong>Core Lead Team Member</strong> - Theatre Club (2024-25)</p>
+                <p style="margin-top: 10px;">Responsible for organizing and coordinating theatrical performances, script development, and team management.</p>
+                
+                <p style="margin-top: 20px;"><strong>Lead Coordinator</strong> - Theatre Events at Cultura 2025</p>
+                <p style="margin-top: 10px;">Annual Techno-Cultural Fest of CMRIT. Managed event planning, participant coordination, and performance execution.</p>
+            </div>
+
+            <h3>Cultural Involvement</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Participated and won numerous theatre events in college fests across Karnataka</li>
+                    <li>Lead Scriptwriter for various theatrical productions</li>
+                    <li>Director of multiple plays performed at college level</li>
+                    <li>Active contributor to cultural activities promoting arts and creativity</li>
+                </ul>
+            </div>
+
+            <h3>Technical Participation</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Regular participant in coding competitions and hackathons</li>
+                    <li>Member of technical clubs and study groups</li>
+                    <li>Contributor to open-source projects on GitHub</li>
+                    <li>Active learner through online courses and certifications</li>
+                </ul>
+            </div>
+
+            <h3>Community Engagement</h3>
+            <div class="section-box">
+                <ul>
+                    <li>Volunteer work through NGO Management System project</li>
+                    <li>Mentoring junior students in programming concepts</li>
+                    <li>Participation in women in technology initiatives</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="contact" class="page">
+            <h2>Get In Touch</h2>
+            
+            <div class="section-box">
+                <h3>Contact Information</h3>
+                <p><strong>Email:</strong> aishwarya.sujan6@gmail.com</p>
+                <p><strong>Academic Email:</strong> aiai23cs@cmrit.ac.in</p>
+                <p><strong>Phone:</strong> +91 8296162379</p>
+                <p><strong>Address:</strong> #16, 1st Cross, Ranka Nagar, R.T Nagar Post, Bengaluru - 560032</p>
+            </div>
+
+            <div class="section-box">
+                <h3>Professional Links</h3>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aishwarya-sujan-aba3b4268/" target="_blank" style="color: #2a5298;">linkedin.com/in/aishwarya-sujan</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/aish-aish006" target="_blank" style="color: #2a5298;">github.com/aish-aish006</a></p>
+            </div>
+
+            <!-- <div class="section-box">
+                <h3>Download Resume</h3>
+                <p>Download a PDF version of my resume for your records.</p>
+                <a href="#" class="btn-download">Download Resume (PDF)</a>
+            </div> -->
+
+            <div class="section-box">
+                <h3>Let's Connect</h3>
+                <p>I'm always interested in hearing about new opportunities, collaborations, and projects. Whether you have a question or just want to say hi, feel free to reach out!</p>
+                <p style="margin-top: 15px;">I'm particularly interested in:</p>
+                <ul>
+                    <li>Full Stack Development opportunities</li>
+                    <li>AI/ML projects and research</li>
+                    <li>Open source contributions</li>
+                    <li>Internship and training programs</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024-2025 Aishwarya Sujan | Computer Science & Engineering</p>
+            <p style="margin-top: 10px;">Designed and Developed with dedication</p>
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $(".nav-link").click(function(e) {
+                e.preventDefault();
+                
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+                
+                var target = $(this).attr("href");
+                
+                $(".page").removeClass("active");
+                $(target).addClass("active");
+                
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 300);
+            });
+            
+            $(".section-box").each(function(index) {
+                $(this).css("opacity", "0");
+                $(this).delay(index * 100).animate({
+                    opacity: 1
+                }, 600);
+            });
+            
+            $(".skill-item").hover(
+                function() {
+                    $(this).animate({
+                        fontSize: "1.1em"
+                    }, 200);
+                },
+                function() {
+                    $(this).animate({
+                        fontSize: "1em"
+                    }, 200);
+                }
+            );
+            
+            $(".project-card").hover(
+                function() {
+                    $(this).find(".project-title").animate({
+                        paddingLeft: "10px"
+                    }, 200);
+                },
+                function() {
+                    $(this).find(".project-title").animate({
+                        paddingLeft: "0px"
+                    }, 200);
+                }
+            );
+        });
+    </script>
+</body>
+</html>
